@@ -1,0 +1,1 @@
+{"case_id": "case-001", "origin": "production-failure", "input": "Summarize the Q3 report.", "criteria": [{"id": "c1", "kind": "tool_called", "family": "deterministic", "statement": "Calls get_report before answering.", "expect": "get_report"}, {"id": "c2", "kind": "required_fact", "family": "judged", "statement": "Mentions the revenue figure.", "tolerance": 0.2}]}
