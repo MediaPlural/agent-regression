@@ -1,34 +1,34 @@
 
 == PER-VARIANT SCORECARD ==
-booted-v1.1    pass 19/25  (76.0%)  fail=6 judge_skipped=0 inconclusive=0 error=0
-    law1: pass 2/5  (40.0%)
+booted-v1.1    pass 22/25  (88.0%)  fail=3 judge_skipped=0 inconclusive=0 error=0
+    law1: pass 5/5  (100.0%)
     law2: pass 4/5  (80.0%)
     law3: pass 5/5  (100.0%)
     law4: pass 4/5  (80.0%)
     law5: pass 4/5  (80.0%)
-booted-v2.1    pass 22/25  (88.0%)  fail=3 judge_skipped=0 inconclusive=0 error=0
+booted-v2.1    pass 23/25  (92.0%)  fail=2 judge_skipped=0 inconclusive=0 error=0
     law1: pass 5/5  (100.0%)
-    law2: pass 3/5  (60.0%)
+    law2: pass 4/5  (80.0%)
     law3: pass 5/5  (100.0%)
     law4: pass 5/5  (100.0%)
     law5: pass 4/5  (80.0%)
-unbooted       pass 17/25  (68.0%)  fail=6 judge_skipped=2 inconclusive=0 error=0
+unbooted       pass 20/25  (80.0%)  fail=5 judge_skipped=0 inconclusive=0 error=0
     law1: pass 2/5  (40.0%)
     law2: pass 4/5  (80.0%)
     law3: pass 5/5  (100.0%)
-    law4: pass 4/5  (80.0%)
-    law5: pass 2/5  (40.0%)
+    law4: pass 5/5  (100.0%)
+    law5: pass 4/5  (80.0%)
 
 == PER-LAW (all variants pooled) ==
-law1: pass 9/15 (60.0%)
-law2: pass 11/15 (73.3%)
+law1: pass 12/15 (80.0%)
+law2: pass 12/15 (80.0%)
 law3: pass 15/15 (100.0%)
-law4: pass 13/15 (86.7%)
-law5: pass 10/15 (66.7%)
+law4: pass 14/15 (93.3%)
+law5: pass 12/15 (80.0%)
 
 == v1.1 vs v2.1 COMPARISON ==
-v1.1 pass rate: 76.0%
-v2.1 pass rate: 88.0%
+v1.1 pass rate: 88.0%
+v2.1 pass rate: 92.0%
 v2.1 beats v1.1 overall: True
-laws where v2.1 < v1.1: ['2']
-PHASE-3 GATE (beats overall AND no law below): False
+laws where v2.1 < v1.1: none
+PHASE-3 GATE (beats overall AND no law below): True

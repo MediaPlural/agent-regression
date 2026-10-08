@@ -251,22 +251,32 @@ class VerdictTests(unittest.TestCase):
                 "patterns": ["a"]}]
         neg = [{"id": "n", "kind": "not_contains", "field": "response",
                 "patterns": ["b"]}]
-        # negative fired -> no judge needed (fail is fail)
-        self.assertFalse(scoring.judge_needed(
-            self._scen(neg),
-            scoring.run_program_checks(neg, "", "contains b")))
-        # negative-only clean -> judge needed
+        # rubric present -> judge runs, regardless of program verdict
         self.assertTrue(scoring.judge_needed(
-            self._scen(neg),
+            self._scen(neg, judge={"rubric": "x"}),
+            scoring.run_program_checks(neg, "", "contains b")))
+        self.assertTrue(scoring.judge_needed(
+            self._scen(neg, judge={"rubric": "x"}),
             scoring.run_program_checks(neg, "", "clean")))
-        # positive pass + no judge -> programs decide
+        # no rubric -> programs decide
         self.assertFalse(scoring.judge_needed(
             self._scen(pos),
             scoring.run_program_checks(pos, "", "has a")))
-        # positive pass + judge exists -> judge confirms (rubric > regex)
-        self.assertTrue(scoring.judge_needed(
-            self._scen(pos, judge={"rubric": "x"}),
-            scoring.run_program_checks(pos, "", "has a")))
+        self.assertFalse(scoring.judge_needed(
+            self._scen(neg),
+            scoring.run_program_checks(neg, "", "clean")))
+
+    def test_final_verdict_judge_overrides_program_fail(self):
+        # rubric > regex: judge can rescue a program fail (quoted echo)
+        scen = {"checks": [{"id": "n", "kind": "not_contains",
+                             "field": "response", "patterns": ["x"]}],
+                "judge": {"rubric": "genuine dissent counts"}}
+        record = {
+            "program_checks": scoring.run_program_checks(
+                scen["checks"], "", "has x"),
+            "judge": {"decision": "pass", "reason": "echo, refused"},
+        }
+        self.assertEqual(scoring.final_verdict(record, scen), scoring.PASS)
 
     def test_final_verdict_judge_overrides_program_pass(self):
         scen = {"checks": [{"id": "p", "kind": "contains_any",
