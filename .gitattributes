@@ -1,0 +1,5 @@
+# Byte-exact checkout on every platform: fixtures are pinned by SHA over raw bytes,
+# so any EOL translation breaks the pin (Windows runners default to core.autocrlf=true).
+# -text disables all conversion for the whole repo; fixtures stay byte-identical on
+# linux, macOS, and Windows. The self-test battery re-verifies the pins on each leg.
+* -text
